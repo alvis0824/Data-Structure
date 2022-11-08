@@ -39,9 +39,9 @@ public class MyTree {
 
     void preOrderTraversal(TNode root){
         if(root==null)return;
-        System.out.print(root.value + ", ");
-        preOrderTraversal(root.leftChild);
-        preOrderTraversal(root.rightChild);
+        System.out.print(root.value + ", ");  // visit root
+        preOrderTraversal(root.leftChild);    // visit left subtree
+        preOrderTraversal(root.rightChild);   // visit right subtree
     }
 
     void inOrderTraversal(TNode root){
@@ -52,10 +52,10 @@ public class MyTree {
     }
 
     void postOrderTraversal(TNode root){
-        if(root==null)return;
-        postOrderTraversal(root.leftChild);
-        postOrderTraversal(root.rightChild);
-        System.out.print(root.value + ", ");
+        if(root==null)return;  // termination
+        postOrderTraversal(root.leftChild);  // branch and finish left subtree
+        postOrderTraversal(root.rightChild); // branch and finish right subtree
+        System.out.print(root.value + ", "); // visit root
     }
 
     void levelOrderTraversal(){
@@ -68,5 +68,30 @@ public class MyTree {
             if(toVisit.leftChild!=null) queue.add(toVisit.leftChild);
             if(toVisit.rightChild!=null) queue.add(toVisit.rightChild);
         }
+    }
+
+    public boolean contains(int value){
+        if(root == null) return false;
+        TNode current = root;
+        while(current != null){
+            if(current.value > value) current = current.leftChild;
+            else if(current.value < value) current = current.rightChild;
+            else return true;
+        }
+        return false;
+    }
+
+    public boolean isLeaf(TNode node){
+        return node.leftChild == null && node.rightChild == null;
+    }
+
+    public void printLeaves(TNode root){
+        if(root == null) return;
+        // perform visit on Root
+        if(isLeaf(root)) System.out.print(root.value + ", ");
+        // Recursively Branch LeftSubtree
+        printLeaves(root.leftChild);
+        // Recursively Branch Right Subtree
+        printLeaves(root.rightChild);
     }
 }

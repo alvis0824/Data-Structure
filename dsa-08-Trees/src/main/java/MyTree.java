@@ -29,6 +29,7 @@ public class MyTree {
                     current.rightChild = newNode;
                     break;
                 }
+                // if leftChild is not null branch into right subtree!!
                 current = current.rightChild;
             }
         }

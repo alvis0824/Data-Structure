@@ -126,4 +126,14 @@ public class MyTree {
 
     }
 
+    // Assignment  -- Sum of Node value
+    public int calculateNodeSums(){
+        return nodeSums(root,root.value);
+    }
+
+    public int nodeSums(TNode node, int sum){
+        if(node == null) return 0;
+        return sum + nodeSums(node.leftChild, node.value) + nodeSums(node.rightChild, node.value);
+    }
+
 }
